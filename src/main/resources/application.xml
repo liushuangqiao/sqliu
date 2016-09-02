@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+      http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+
+    <!-- 属性文件读入 -->
+    <bean id="propertyConfigurer"
+          class="dev.xwolf.framework.config.properties.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+               <!-- <value>classpath:${profile.properties}/*.properties</value>-->
+                <value>classpath:properties/jdbc.properties</value>
+                <value>classpath:properties/system.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <import resource="classpath:beans/beans-resource.xml"/>
+    <import resource="classpath:beans/beans-service.xml"/>
+    <!-- 激活annotation功能 -->
+    <context:annotation-config/>
+    <!-- 激活annotation功能 -->
+    <context:spring-configured/>
+
+    <!-- 扫描指定package下所有带有如@controller,@services,@resource,并把所注释的注册为Spring Beans -->
+    <context:component-scan base-package="cn.sqliu.controller,cn.sqliu.service,cn.sqliu.serviceImpl">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <!-- 切入点 -->
+    <!-- <aop:config>
+        <aop:aspect id="asp1" ref="myAspect">
+            <aop:before method="authority" pointcut="execution(* com.sqliu..*.*(..))"/>
+            <aop:after method="release" pointcut="execution(* com.sqliu..*.*(..))"/>
+            <aop:after-returning method="log"
+                                 pointcut="execution(* com.sqliu..*.*(..))" returning="rvt"/>
+            <aop:around method="processTx" pointcut="execution(* com.sqliu..*.*(..))"/>
+        </aop:aspect>
+    </aop:config> -->
+    
+
+</beans> 
+

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.sqliu.dao.IArticleDao">
+
+	<resultMap id="ArticleManage" type="cn.sqliu.entity.Article">
+		<result column="id" jdbcType="INTEGER" property="id" />
+		<result column="title" jdbcType="VARCHAR" property="title" />
+		<result column="hits" jdbcType="INTEGER" property="hits" />
+		<result column="words" jdbcType="VARCHAR" property="words" />
+		<result column="author" jdbcType="VARCHAR" property="author" />
+		<result column="status" jdbcType="CHAR" property="status" />
+		<result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+		<result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+		<result column="picture" jdbcType="VARCHAR" property="picture" />
+		<result column="category_id" jdbcType="INTEGER" property="categoryId" />
+		<result column="categoryName" jdbcType="VARCHAR" property="categoryName" />
+	</resultMap>
+
+	<select id="findById" resultMap="ArticleManage">
+		select a.*,b.name as
+		categoryName from articles a LEFT JOIN category_name b on
+		a.category_id = b.category_id where a.id=#{id} AND a.status='1'
+	</select>
+
+	<select id="getNewArticle" resultMap="ArticleManage">
+		select a.*,b.name as
+		categoryName from articles a LEFT JOIN category_name b on
+		a.category_id = b.category_id WHERE a.status='1' ORDER BY created_time DESC
+		LIMIT 10
+	</select>
+
+	<select id="getAllArticle" resultMap="ArticleManage">
+		select a.*,b.name as categoryName from articles a
+		LEFT JOIN category_name b on a.category_id = b.category_id
+		where a.category_id = #{categoryId} AND a.status='1'
+		ORDER BY created_time DESC
+	</select>
+
+	<select id="getLastArticleById" resultMap="ArticleManage">
+		select * FROM articles WHERE category_id=#{categoryId} AND id&lt;#{id} ORDER BY id DESC LIMIT 1
+	</select>
+
+	<select id="getNextArticleById" resultMap="ArticleManage">
+		select * FROM articles WHERE category_id=#{categoryId} AND id>#{id} ORDER BY id ASC LIMIT 1
+	</select>
+
+	<select id="getArticleByHits" resultMap="ArticleManage">
+		select * from articles WHERE status='1' order by hits DESC limit 5
+	</select>
+
+	<update id="updateHitsById">
+		update articles set hits = #{hits} where id = #{id}
+	</update>
+	
+	<insert id="insertArticle">
+		INSERT INTO articles (title, words, author, category_id,created_time)
+		VALUES (#{title}, #{words}, #{author}, #{categoryId},now())
+	</insert>
+	
+	<update id="updateArticle">
+		UPDATE articles SET 
+		<if test="title != null || title != ''">
+			title = #{title}
+		</if>
+		<if test="words != null || words != ''">
+			words = #{words}
+		</if>
+		<if test="title != null || title != ''">
+			picture = #{picture}
+		</if>
+		<if test="title != null || title != ''">
+			categoryId = #{categoryId}
+		</if>
+		updated_time = CURRENT_TIMESTAMP
+	</update>
+	
+	<delete id="deleteArticle">
+		UPDATE FROM articles SET status = '0' WHERE id=#{id}
+	</delete>
+
+	<select id="findArticleList" resultMap="ArticleManage">
+		select a.*,b.name as categoryName from articles a
+		LEFT JOIN category_name b on
+		a.category_id = b.category_id
+	</select>
+</mapper>

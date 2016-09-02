@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd        
+      http://www.springframework.org/schema/data/mongo  http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd">
+
+	 <bean id="hessianProxyFactoryBean" class="cn.sqliu.remote.HessianProxyFactoryBean"
+		abstract="true">
+		<property name="overloadEnabled" value="true" />
+		<property name="readTimeout" value="150000" />
+	</bean>
+
+	<bean name="articleService" parent="hessianProxyFactoryBean">
+		<property name="serviceUrl">
+			<value>${mysql_host}/hessian/articleService</value>
+		</property>
+		<property name="serviceInterface">
+			<value>cn.sqliu.service.IArticleService</value>
+		</property>
+	</bean> 
+	
+
+</beans>
+
