@@ -1,0 +1,104 @@
+a:link{
+    text-decoration:none;
+}
+a:visited{
+    text-decoration:none;
+}
+a:hover{
+    text-decoration:none;
+}
+a:active{
+    text-decoration:none;
+}
+.addbtn {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    float: left;
+
+}
+#myTabContent {
+    margin-left: 20px;
+    margin-right: 40px;
+    margin-top: 2px;
+    width: 97%;
+}
+.ui-table-text{
+    line-height: 24px;
+    height: 50px;
+    overflow: hidden;
+    padding: 4px 8px;
+    text-align: left;
+}
+.Material_box{
+    width: 136px;
+    display: inline-block;
+    border: 1px solid #b1b1b1;
+    background-color: #fff;
+    padding-top: 5px;
+    padding-bottom: 2px;
+    -moz-box-shadow: 2px 3px 0px #c8c8c8;
+    -webkit-box-shadow: 2px 3px 0px #c8c8c8;
+    z-index:999;
+    position:absolute;
+    margin-top: -7px;
+    margin-left: -1px;
+    line-height: 30px;
+    color:#999;
+    background-color:#EAFEFF
+}
+.Material_arrow p{
+    text-indent:1em;
+    margin-bottom: 0px;}
+.ui-pager {
+    margin: 14px;
+}
+.ui-pager {
+    font-size: 12px;
+    height: 25px;
+    line-height: 25px;
+}
+.list-pager{
+    color: #666;
+    font-size: 12px;
+    line-height: 18px;
+    margin: 14px;
+    display: inline-block;
+    zoom: 1;
+    float: right;}
+
+.ui-pager-main .ui-pager-item-current {
+    background: #cacaca;
+    color: #fff;
+}
+.ui-pager-main li {
+    font-family: STHeiti,SimSun;
+    margin-left: 4px;
+    text-align: center;
+    vertical-align: top;
+    color: #333;
+    display: inline-block;
+    zoom: 1;
+}
+.control-group{
+    margin-top: 16px;}
+.iradio_flat-red.checked {
+    background-position: -110px 0;}
+.iradio_flat-red{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    background: url(/images/ad/red.png) no-repeat;
+    border: none;
+    cursor: pointer;}
+.slots-selector-title{
+    background: #ebebeb;
+    border-bottom: 1px solid #ebebeb;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 10px;
+}
+.search_more_window th{font-weight: normal;}

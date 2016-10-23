@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.sqliu.dao.ICommentDao">
+
+	<resultMap id="CommentManage" type="cn.sqliu.entity.Comment">
+		<result column="id" jdbcType="INTEGER" property="id" />
+		<result column="essay_id" jdbcType="INTEGER" property="essayId" />
+		<result column="user_id" jdbcType="INTEGER" property="userId" />
+		<result column="userName" jdbcType="INTEGER" property="userName" />
+		<result column="words" jdbcType="VARCHAR" property="words" />
+		<result column="praise" jdbcType="INTEGER" property="praise" />
+		<result column="status" jdbcType="VARCHAR" property="status" />
+		<result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+		<result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+	</resultMap>
+
+	<insert id="save">
+		INSERT INTO sqliu_comment (essay_id,user_id,words,praise,status,created_time,updated_time)
+		VALUES (#{essayId}, #{userId}, #{words}, #{praise},#{status},now(),now())
+	</insert>
+
+	<select id="findById" resultMap="CommentManage">
+		SELECT * FROM sqliu_comment WHERE id = #{id}
+	</select>
+
+	<select id="findAll" resultMap="CommentManage">
+		SELECT a.*,b.user_name as userName FROM sqliu_comment a LEFT JOIN sqliu_user b
+		ON a.user_id = b.id
+	</select>
+
+	<select id="find" resultMap="CommentManage">
+		SELECT a.*,b.user_name as userName FROM sqliu_comment a LEFT JOIN sqliu_user b
+		ON a.user_id = b.id
+		<where>1=1
+			<if test="id != null and id != ''">
+				and a.id = #{id}
+			</if>
+			<if test="essayId != null and essayId != ''">
+				and a.essay_id = #{essayId}
+			</if>
+			<if test="userId != null and userId != ''">
+				and a.user_id = #{userId}
+			</if>
+			<if test="words != null and words != ''">
+				and a.words = #{words}
+			</if>
+			<if test="praise != null and praise != ''">
+				and a.praise = #{praise}
+			</if>
+			<if test="status != null and status != ''">
+				and a.status = #{status}
+			</if>
+			order by a.id desc
+		</where>
+	</select>
+	
+	<update id="update">
+		UPDATE sqliu_comment SET
+		<if test="essayId != null and essayId != ''">
+			 essay_id = #{essayId},
+		</if>
+		<if test="userId != null and userId != ''">
+			 user_id = #{userId},
+		</if>
+		<if test="words != null and words != ''">
+			 words = #{words},
+		</if>
+		<if test="praise != null and praise != ''">
+			 praise = #{praise},
+		</if>
+		<if test="status != null and status != ''">
+			 status = #{status},
+		</if>
+		updated_time = CURRENT_TIMESTAMP
+		<![CDATA[
+	            where id = #{id}
+	        ]]>
+	</update>
+	
+	<update id="deleteById">
+		UPDATE FROM sqliu_comment SET status = '0' WHERE id=#{id}
+	</update>
+</mapper>
