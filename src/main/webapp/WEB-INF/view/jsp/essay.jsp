@@ -18,13 +18,13 @@
     <title>桥帮主|个人博客</title>
     <meta name="keywords" content="个人博客模板,博客模板" />
     <meta name="description" content="桥帮主的个人博客。" />
-    <link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/css/new.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
-    <script src="${pageContext.request.contextPath}/js/modernizr.js"></script>
-    <script src="${pageContext.request.contextPath}/js/silder.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.1.js"></script>
+    <link href="${getPageHost}/css/base.css" rel="stylesheet">
+    <link href="${getPageHost}/css/index.css" rel="stylesheet">
+    <link href="${getPageHost}/css/new.css" rel="stylesheet">
+    <link href="${getPageHost}/css/style.css" rel="stylesheet">
+    <script src="${getPageHost}/js/modernizr.js"></script>
+    <script src="${getPageHost}/js/silder.js"></script>
+    <script type="text/javascript" src="${getPageHost}/js/jquery-1.7.1.js"></script>
 <script type="text/javascript">
     /**获得当前日期**/
     $(document).ready()
@@ -48,50 +48,49 @@
 <header>
     <div id="logo"><a href="/"></a></div>
     <nav class="topnav" id="topnav">
-        <a href="${pageContext.request.contextPath}/"><span>首页</span><span class="en">Home</span></a>
-        <a href="${pageContext.request.contextPath}/essay/1/1"><span>随笔</span><span class="en">Essay</span></a>
-        <%--        <a href="${pageContext.request.contextPath}/photo"><span>相册</span><span class="en">Life</span></a>--%>
-        <a href="${pageContext.request.contextPath}/essay/2/1"><span>Java笔记</span><span class="en">Java</span></a>
-        <a href="${pageContext.request.contextPath}/essay/3/1"><span>慢生活</span><span class="en">Life</span></a>
-        <a href="${pageContext.request.contextPath}/essay/4/1"><span>读书心得</span><span class="en">Reading</span></a>
-        <a href="#"><span>留言版</span><span class="en">Gustbook</span></a>
+        <a href="${getPageHost}/"><span>首页</span><span class="en">Home</span></a>
+        <a href="${getPageHost}/essay/1/1"><span>随笔</span><span class="en">Essay</span></a>
+        <a href="${getPageHost}/essay/2/1"><span>Java笔记</span><span class="en">Java</span></a>
+        <a href="${getPageHost}/essay/3/1"><span>慢生活</span><span class="en">Life</span></a>
+        <a href="${getPageHost}/essay/4/1"><span>读书心得</span><span class="en">Reading</span></a>
+        <a href="${getPageHost}/gustBook/list/1"><span>留言版</span><span class="en">Gustbook</span></a>
         <c:if test="${sessionScope.get('username')==null || sessionScope.get('username')==''}">
-            <a href="${pageContext.request.contextPath}/to_login"><span onclick="showLoginBox()">登录</span><span class="en">登录</span></a>
+            <a href="#"><span onclick="setUrlSession()">登录</span><span class="en">登录</span></a>
         </c:if>
         <c:if test="${sessionScope.get('username')!=null && sessionScope.get('username')!=''}">
             <a href="#"><span>${sessionScope.get("username") }</span><span class="en">欢迎您</span></a>
+            <a href="#" onclick="userLogout()"><span style="color: blue">退出</span><span class="en">退出</span></a>
         </c:if>
     </nav>
     </nav>
 </header>
+<%@include file="sqliu_js.jsp"%>
 <article class="blogs">
     <h1 class="t_nav">
-<c:forEach items="${pageInfo.list}" var="list" begin="0" end="0">
-        <c:if test="${list.categoryId=='1'}">
-        <span style="background:url(${pageContext.request.contextPath}/images/pen.png) no-repeat left center; padding-left:20px;">&nbsp;用文字记录心灵点滴，在文字中寻找自己的灵魂。</span>
+        <c:if test="${categoryId=='1'}">
+        <span style="background:url(${getPageHost}/images/pen.png) no-repeat left center; padding-left:30px;">&nbsp;用文字记录心灵点滴，在文字中寻找自己的灵魂。</span>
         </c:if>
-        <c:if test="${list.categoryId=='2'}">
-            <span style="background:url(${pageContext.request.contextPath}/images/javaicon.png) no-repeat left center; padding-left:20px;">&nbsp;技术要靠点滴积累，不积跬步无以至千里。</span>
+        <c:if test="${categoryId=='2'}">
+            <span style="background:url(${getPageHost}/images/javaicon.png) no-repeat left center; padding-left:30px;">&nbsp;技术要靠点滴积累，不积跬步无以至千里。</span>
         </c:if>
-        <c:if test="${list.categoryId=='3'}">
-            <span style="background:url(${pageContext.request.contextPath}/images/cup.png) no-repeat left center; padding-left:20px;">&nbsp;工作要快，生活要慢。时间很快，却足够花开花落。</span>
+        <c:if test="${categoryId=='3'}">
+            <span style="background:url(${getPageHost}/images/cup.png) no-repeat left center; padding-left:30px;">&nbsp;工作要快，生活要慢。时间很快，却足够花开花落。</span>
         </c:if>
-        <c:if test="${list.categoryId=='4'}">
-            <span style="background:url(${pageContext.request.contextPath}/images/5794.png) no-repeat left center; padding-left:20px;">&nbsp;书中自有黄金屋，书中自有颜如玉。读别人的文字，悟自己的人生。</span>
+        <c:if test="${categoryId=='4'}">
+            <span style="background:url(${getPageHost}/images/5794.png) no-repeat left center; padding-left:30px;">&nbsp;书中自有黄金屋，书中自有颜如玉。读别人的文字，悟自己的人生。</span>
         </c:if>
-    </c:forEach>
         <span style="float: right;" id="day_day"></span>
         </h1>
     <div class="newblog left">
         <c:forEach items="${pageInfo.list}" var="list">
-        <h2><a href="${pageContext.request.contextPath}/essayDetail/${list.id}">${list.title}</a></h2>
+        <h2><a href="${getPageHost}/essayDetail/${list.id}">${list.title}</a></h2>
         <p class="dateview"><span>发布时间：<fmt:formatDate pattern="yyyy-MM-dd" value="${list.createdTime }"></fmt:formatDate></span><span>分类：<a href="${pageContext.request.contextPath}/essay/${list.categoryId }/1">【${list.categoryName }】</a></span><span>浏览量：(${list.hits})</span></p>
-        <figure><img src="${pageContext.request.contextPath}/images/001.png"></figure>
+        <figure><img src="${getPageHost}/images/001.png"></figure>
         <ul class="nlist">
             <div style="width: 520px;max-height:61px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; word-break: break-all;">
             <p>${list.words}</p>
             </div>
-            <a title="阅读全文" href="${pageContext.request.contextPath}/essayDetail/${list.id}" target="_blank" class="readmore">阅读全文>></a>
+            <a title="阅读全文" href="${getPageHost}/essayDetail/${list.id}" target="_blank" class="readmore">阅读全文>></a>
         </ul>
         <div class="line"></div>
         </c:forEach>
@@ -118,7 +117,7 @@
             </h3>
             <ul class="rank" style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; word-break: break-all;">
                 <c:forEach items="${newlist}" var="Article">
-                    <li><a href="${pageContext.request.contextPath}/essayDetail/${Article.id }" target="_blank" title="${Article.title}" target="_blank">${Article.title}</a></li>
+                    <li><a href="${getPageHost}/essayDetail/${Article.id }" target="_blank" title="${Article.title}" target="_blank">${Article.title}</a></li>
                 </c:forEach>
             </ul>
             <h3 class="ph">
@@ -126,7 +125,7 @@
             </h3>
             <ul class="paih">
                 <c:forEach items="${articleRight}" var="hitsList">
-                    <li><a href="${pageContext.request.contextPath}/essayDetail/${hitsList.id }" title="${hitsList.title}" target="_blank">${hitsList.title}</a></li>
+                    <li><a href="${getPageHost}/essayDetail/${hitsList.id }" title="${hitsList.title}" target="_blank">${hitsList.title}</a></li>
                 </c:forEach>
             </ul>
         </div>

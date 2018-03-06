@@ -27,9 +27,8 @@
     <context:annotation-config/>
     <!-- 激活annotation功能 -->
     <context:spring-configured/>
-
     <!-- 扫描指定package下所有带有如@controller,@services,@resource,并把所注释的注册为Spring Beans -->
-    <context:component-scan base-package="cn.sqliu.controller,cn.sqliu.service,cn.sqliu.serviceImpl">
+   <context:component-scan base-package="cn.sqliu.controller,cn.sqliu.service,cn.sqliu.service.impl">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
     <!-- 切入点 -->

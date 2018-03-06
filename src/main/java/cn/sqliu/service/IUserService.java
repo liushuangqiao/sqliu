@@ -1,6 +1,7 @@
 package cn.sqliu.service;
 
 import cn.sqliu.entity.User;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -13,5 +14,6 @@ public interface IUserService {
     User findById(Integer userId);
     void deleteById(Integer userId);
     List<User> findByUser(User user);
+    PageInfo<User> userList(Integer currentPage);
     User findByName(String username);
 }

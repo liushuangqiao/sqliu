@@ -17,9 +17,9 @@
     <title>后台管理系统</title>
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/newManage/bootstrap.min.css">
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.12.1.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/bootstrap/bootstrap-treeview.js"></script>
+    <link rel="stylesheet" type="text/css" href="${getPageHost}/css/newManage/bootstrap.min.css">
+    <script type="text/javascript" src="${getPageHost}/js/jquery-1.12.1.min.js"></script>
+    <script src="${getPageHost}/js/bootstrap/bootstrap-treeview.js"></script>
 
     <!--[if lt IE 9]>
     <script src="/webjars/html5shiv/3.7.2/dist/html5shiv.min.js"></script>
@@ -58,8 +58,8 @@
 </head>
 
 <body>
-<link href="${pageContext.request.contextPath}/css/newManage/main_css.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/commonAll.js"></script>
+<link href="${getPageHost}/css/newManage/main_css.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="${getPageHost}/js/commonAll.js"></script>
 <script type="text/javascript">
     /**退出系统**/
     function logout() {
@@ -87,17 +87,26 @@
     var menuData = [
         {
             text: '文章列表',
-            href: '${pageContext.request.contextPath}/manage/articleList/1'
+            href: '${getPageHost}/manage/articleList/1'
         },
         {
             text: '写文章',
-            href: '${pageContext.request.contextPath}/manage/write'
+            href: '${getPageHost}/manage/write'
         },
         {
             text: '文章回收站',
-            href: '${pageContext.request.contextPath}/manage/deleteList/1'
+            href: '${getPageHost}/manage/deleteList/1'
+        },
+        {
+            text: '用户管理',
+            href: '${getPageHost}/user/userList/1'
+        },
+        {
+            text: '友情链接管理',
+            href: '${getPageHost}/friend/urlList/1'
         },
     ];
+
 
     $(function () {
         $('#menuDiv').treeview({
@@ -116,16 +125,16 @@
 
 </script>
 <div id="top">
-    <div id="top_logo"> <img alt="logo"  src="${pageContext.request.contextPath}/images/common/manage_head.png" width="240" height="35" style="vertical-align: middle;"> </div>
+    <div id="top_logo"> <img alt="logo"  src="${getPageHost}/images/common/manage_head.png" width="240" height="35" style="vertical-align: middle;"> </div>
     <div id="top_links">
         <div id="top_op">
             <ul>
-                <li><img alt="当前用户" src="${pageContext.request.contextPath}/images/common/user.jpg">： <span>admin</span></li>
-                <li><img alt="今天是" src="${pageContext.request.contextPath}/images/common/date.jpg">： <span id="day_day">2016.08.8</span></li>
+                <li><img alt="当前用户" src="${getPageHost}/images/common/user.jpg">： <span>admin</span></li>
+                <li><img alt="今天是" src="${getPageHost}/images/common/date.jpg">： <span id="day_day">2016.08.8</span></li>
             </ul>
         </div>
         <div id="top_close"> <a href="javascript:void(0);" onclick="logout();" target="_parent">
-            <img alt="退出系统" title="退出系统" src="${pageContext.request.contextPath}/images/common/close.jpg" style="position: relative; left: 25px;"> </a> </div>
+            <img alt="退出系统" title="退出系统" src="${getPageHost}/images/common/close.jpg" style="position: relative; left: 25px;"> </a> </div>
         <button type="button" style="display: none" id="handleMenu" onclick=""></button>
     </div>
 </div>
@@ -133,17 +142,17 @@
 <div id="side">
     <div id="left_menu">
         <ul id="TabPage2" style="height: 200px; margin-top: 50px;">
-            <li id="left_tab1" class="selected" title="广告管理" ><img alt="广告管理" title="广告管理" src="${pageContext.request.contextPath}/images/common/1_hover.jpg" width="30" height="30"></li>
+            <li id="left_tab1" class="selected" title="广告管理" ><img alt="广告管理" title="广告管理" src="${getPageHost}/images/common/1_hover.jpg" width="30" height="30"></li>
         </ul>
         <div id="nav_show" style="position: absolute; bottom: 0px; padding: 15px;"><a href="javascript:;" id="show_hide_btn"> <img alt="显示/隐藏" title="显示/隐藏" src="${pageContext.request.contextPath}/images/common/nav_hide.png" width="30" height="30"> </a> </div>
     </div>
     <div id="left_menu_cnt">
-        <div id="nav_module"><img src="${pageContext.request.contextPath}/images/common/module_1.png" width="140"
+        <div id="nav_module"><img src="${getPageHost}/images/common/module_1.png" width="140"
                                   height="58"></div>
         <div id="nav_resource">
             <div id="menuDiv" style="display: block;" class="treeview">
             </div>
-            <div id="orderDiv" style="display: none;" class="treeview">
+            <div id="userDiv" style="display: none;" class="treeview">
                 </div>
             <div id="keyWordDiv" style="display: none;" class="treeview">
             </div>
@@ -252,7 +261,7 @@
 <!-- side menu start -->
 <div id="top_nav"> <span id="here_area">当前位置：系统&nbsp;&gt;&nbsp;</span><span id="nav_current">系统介绍</span> </div>
 <div id="main">
-    <iframe name="right" id="rightMain" src="${pageContext.request.contextPath}/manage/articleList/1" frameborder="no" scrolling="auto" width="100%" height="102%" allowtransparency="true"> &lt;/div&gt;
+    <iframe name="right" id="rightMain" src="${getPageHost}/manage/articleList/1" frameborder="no" scrolling="auto" width="100%" height="102%" allowtransparency="true"> &lt;/div&gt;
         &lt;/body&gt;
         &lt;/html&gt; </iframe>
 </div>

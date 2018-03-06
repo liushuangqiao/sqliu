@@ -126,7 +126,7 @@
     });
 </script>
 </head>
-<body style="background: url('${pageContext.request.contextPath}/images/login/login_bg_${randNum}.jpg');background-size:cover;">
+<body onkeypress="if (event.keyCode == 13) login();" style="background: url('${pageContext.request.contextPath}/images/login/login_bg_${randNum}.jpg');background-size:cover;">
 <%--<div class="top_div"></div>--%>
 <div style="background: rgb(255, 255, 255); margin: 190px auto auto; border: 1px solid rgb(231, 231, 231); border-image: none; width: 400px; height: 252px; text-align: center;">
     <div style="width: 165px; height: 96px; position: absolute;">
@@ -238,7 +238,7 @@
                 },
                 success : function(data) {
                     if(data=='1'){
-                        window.location.href = "${pageContext.request.contextPath}/";
+                        window.location.href = "${sessionScope.get("urlSession")}";
                     }else if(data=='0'){
                         $("#pwd_error").html('');
                         $("#pwd_error").html('密码错误！');

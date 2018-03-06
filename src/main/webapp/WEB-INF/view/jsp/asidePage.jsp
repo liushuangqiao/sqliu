@@ -11,8 +11,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <head>
-    <link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet">
+    <link href="${getPageHost}/css/base.css" rel="stylesheet">
+    <link href="${getPageHost}/css/index.css" rel="stylesheet">
 </head>
 <aside class="right">
     <div class="weather"><iframe width="250" scrolling="no" height="60" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=12&icon=1&num=1"></iframe></div>
@@ -22,7 +22,7 @@
         </h3>
         <ul class="rank">
             <c:forEach items="${pageInfo}" var="Article">
-                <li><a href="${pageContext.request.contextPath}/essayDetail/${Article.id }" target="_blank" title="${Article.title}" target="_blank">${Article.title}</a></li>
+                <li><a href="${getPageHost}/essayDetail/${Article.id }" target="_blank" title="${Article.title}" target="_blank">${Article.title}</a></li>
             </c:forEach>
         </ul>
         <h3 class="ph">
@@ -30,7 +30,7 @@
         </h3>
         <ul class="paih">
             <c:forEach items="${articleRight}" var="hitsList">
-                <li><a href="${pageContext.request.contextPath}/essayDetail/${hitsList.id }" title="${hitsList.title}" target="_blank">${hitsList.title}</a></li>
+                <li><a href="${getPageHost}/essayDetail/${hitsList.id }" title="${hitsList.title}" target="_blank">${hitsList.title}</a></li>
             </c:forEach>
         </ul>
         <h3 class="links">

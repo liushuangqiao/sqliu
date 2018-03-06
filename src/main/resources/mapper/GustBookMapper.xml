@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.sqliu.dao.IGustBookDao">
+<resultMap id="GustBookManage" type="cn.sqliu.entity.GustBook">
+		<result column="id" jdbcType="INTEGER" property="id"/>
+		<result column="user_uuid" jdbcType="VARCHAR" property="userUuid"/>
+		<result column="user_name" jdbcType="VARCHAR" property="userName"/>
+		<result column="contents" jdbcType="VARCHAR" property="contents"/>
+		<result column="parent_id" jdbcType="INTEGER" property="parentId"/>
+		<result column="status" jdbcType="VARCHAR" property="status"/>
+		<result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime"/>
+		<result column="created_time" jdbcType="TIMESTAMP" property="createdTime"/>
+	</resultMap> 
+	
+	<insert id="save">
+		INSERT INTO gustbook(user_uuid,user_name,contents,parent_id,status,created_time)
+		VALUES (#{userUuid},#{userName},#{contents},#{parentId},#{status},now())
+	</insert>
+	
+	<delete id="deleteById">
+		delete from gustbook where id = #{id}
+	</delete>
+	
+	<update id="update">
+		update gustbook set
+		<if test="userUuid != '' and userUuid != null">
+			user_uuid = #{userUuid},
+		</if>
+		<if test="userName != '' and userName != null">
+			user_name = #{userName},
+		</if>
+		<if test="contents !='' and contents != null">
+			 contents = #{contents},
+		</if>
+		<if test="status != '' and status != null">
+			 status = #{status},
+		</if>
+		<if test="parentId != '' and parentId != null">
+			 parent_id = #{parentId},
+		</if>
+		 updated_time = CURRENT_TIMESTAMP
+		where id=#{id}
+	</update>
+	
+	<select id="findAll" resultMap="GustBookManage">
+		select * from gustbook ORDER BY created_time DESC
+	</select>
+	
+	<select id="findById" resultMap="GustBookManage">
+		select * from gustbook where id = #{id}
+	</select>
+	
+	<select id="find" resultMap="GustBookManage">
+		select * from gustbook WHERE 1=1
+		<if test="userUuid != '' and userUuid != null">
+			and user_uuid = #{userUuid}
+		</if>
+		<if test="userName != '' and userName != null">
+			and user_name = #{userName}
+		</if>
+		<if test="contents !='' and contents != null">
+			 and contents = #{contents}
+		</if>
+		<if test="status != '' and status != null">
+			 and status = #{status}
+		</if>
+		<if test="parentId != '' and parentId != null">
+			 and parent_id = #{parentId}
+		</if>
+		order by id desc
+	</select>
+</mapper>

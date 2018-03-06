@@ -77,4 +77,6 @@ public interface IArticleService {
 	 PageInfo<Article> findArticleList(char status,Integer currentPage);
 
 	 PageInfo<Article> find(Article article,Integer currentPage);
+
+	List<Article> searchList(char status,String searchInput,Integer currentPage);
 }

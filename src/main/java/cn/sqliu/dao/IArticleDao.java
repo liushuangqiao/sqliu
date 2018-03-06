@@ -85,5 +85,9 @@ public interface IArticleDao {
      */
 	List<Article> findArticleList(char status);
 
+	List<Article> findByTitle(@Param("title") String title);
+
+	List<Article> findByWords(@Param("words") String words);
+
 	List<Article> find(Article article);
 }

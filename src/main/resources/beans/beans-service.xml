@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mongo="http://www.springframework.org/schema/data/mongo"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd        
-      http://www.springframework.org/schema/data/mongo  http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
 
 	 <bean id="hessianProxyFactoryBean" class="cn.sqliu.remote.HessianProxyFactoryBean"
 		abstract="true">
@@ -18,12 +17,60 @@
 			<value>cn.sqliu.service.IArticleService</value>
 		</property>
 	</bean>
+	<bean name="userService" parent="hessianProxyFactoryBean">
+		<property name="serviceUrl">
+			<value>${mysql_host}/hessian/userService</value>
+		</property>
+		<property name="serviceInterface">
+			<value>cn.sqliu.service.IUserService</value>
+		</property>
+	</bean>
 	<bean name="commentService" parent="hessianProxyFactoryBean">
 		<property name="serviceUrl">
 			<value>${mysql_host}/hessian/commentService</value>
 		</property>
 		<property name="serviceInterface">
 			<value>cn.sqliu.service.ICommentService</value>
+		</property>
+	</bean>
+	<bean name="friendUrlService" parent="hessianProxyFactoryBean">
+		<property name="serviceUrl">
+			<value>${mysql_host}/hessian/friendUrlService</value>
+		</property>
+		<property name="serviceInterface">
+			<value>cn.sqliu.service.IFriendUrlService</value>
+		</property>
+	</bean>
+	<bean name="clubService" parent="hessianProxyFactoryBean">
+		<property name="serviceUrl">
+			<value>${mysql_host}/hessian/clubService</value>
+		</property>
+		<property name="serviceInterface">
+			<value>cn.sqliu.service.IClubService</value>
+		</property>
+	</bean>
+	<bean name="clubImgService" parent="hessianProxyFactoryBean">
+		<property name="serviceUrl">
+			<value>${mysql_host}/hessian/clubImgService</value>
+		</property>
+		<property name="serviceInterface">
+			<value>cn.sqliu.service.IClubImgService</value>
+		</property>
+	</bean>
+	<bean name="mgnFeedbackService" parent="hessianProxyFactoryBean">
+		<property name="serviceUrl">
+			<value>${mysql_host}/hessian/mgnFeedbackService</value>
+		</property>
+		<property name="serviceInterface">
+			<value>cn.sqliu.service.IMgnFeedbackService</value>
+		</property>
+	</bean>
+	<bean name="newsService" parent="hessianProxyFactoryBean">
+		<property name="serviceUrl">
+			<value>${mysql_host}/hessian/newsService</value>
+		</property>
+		<property name="serviceInterface">
+			<value>cn.sqliu.service.INewsService</value>
 		</property>
 	</bean>
 

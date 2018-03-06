@@ -15,8 +15,8 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="${pageContext.request.contextPath}/css/bootstrap.css" rel="stylesheet">
-    <script src="${pageContext.request.contextPath}/js/jquery-1.12.1.min.js"></script>
+    <link href="${getPageHost}/css/bootstrap.css" rel="stylesheet">
+    <script src="${getPageHost}/js/jquery-1.12.1.min.js"></script>
     <title>文章列表管理</title>
 
 </head>
@@ -41,7 +41,7 @@
            <td>${alist.hits}</td>
            <td>${alist.categoryName}</td>
            <td>
-               <button type="button" ><a href="${pageContext.request.contextPath}/manage/updateArticle/${alist.id}" target="_blank">修改</a></button>
+               <button type="button" ><a href="${getPageHost}/manage/updateArticle/${alist.id}" target="_blank">修改</a></button>
                <button type="button" onclick="del(${alist.id})">删除</button>
            </td>
        </tr>
@@ -55,7 +55,7 @@
     function del(id){
         $.ajax({
             type : 'POST',
-            url : '${pageContext.request.contextPath}/manage/del',
+            url : '${getPageHost}/manage/del',
             data : {
                 id : id,
             },

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.sqliu.dao.IFriendUrlDao">
+
+	<resultMap id="UrlManage" type="cn.sqliu.entity.FriendUrl">
+		<result column="id" jdbcType="INTEGER" property="id"/>
+		<result column="name" jdbcType="VARCHAR" property="name"/>
+		<result column="url" jdbcType="VARCHAR" property="url"/>
+		<result column="title" jdbcType="VARCHAR" property="title"/>
+		<result column="friend_name" jdbcType="VARCHAR" property="friendName"/>
+		<result column="status" jdbcType="VARCHAR" property="status"/>
+		<result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime"/>
+		<result column="created_time" jdbcType="TIMESTAMP" property="createdTime"/>
+	</resultMap> 
+	<select id="findById" resultMap="UrlManage">
+		select * from friend_url WHERE id = #{id}
+	</select>
+
+	<select id="find" resultMap="UrlManage">
+		SELECT * FROM friend_url WHERE 1=1
+		<if test="name !='' and name != null">
+			and name = #{name}
+		</if>
+		<if test="url !='' and url != null">
+			and url = #{url}
+		</if>
+		<if test="title !='' and title != null">
+			and title = #{title}
+		</if>
+		<if test="status !='' and status != null">
+			and status = #{status}
+		</if>
+
+		<if test="friendName!='' and friendName!=null">
+			and friend_name = #{friendName}
+		</if>
+		order by id desc
+	</select>
+
+	<select id="findList" resultMap="UrlManage">
+		SELECT * FROM friend_url ORDER BY status DESC
+	</select>
+
+	<delete id="deleteById">
+		delete from friend_url WHERE id = #{id}
+	</delete>
+
+	<update id="update">
+		update friend_url set
+		<if test="name != '' and name != null">
+			name = #{name},
+		</if>
+		<if test="url != '' and url != null">
+			url = #{url},
+		</if>
+		<if test="title !='' and title != null">
+			 title = #{title},
+		</if>
+		<if test="status != '' and status != null">
+			 status = #{status},
+		</if>
+		<if test="friendName != '' and friendName != null">
+			 friend_name = #{friendName},
+		</if>
+		 updated_time = CURRENT_TIMESTAMP
+		where id=#{id}
+	</update> 
+	
+	<insert id="save">
+		INSERT INTO friend_url(name,url,title,friend_name,status,created_time)
+		VALUES (#{name},#{url},#{title},#{friendName},#{status},now())
+	</insert>
+
+	<select id="count" resultType="Integer">
+		SELECT count('*') FROM friend_url WHERE status = '1'
+	</select>
+</mapper>

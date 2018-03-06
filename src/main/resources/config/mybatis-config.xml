@@ -44,5 +44,13 @@
 		<mapper resource="mapper/ArticleMapper.xml" />		
 		<mapper resource="mapper/UserMapper.xml" />
 		<mapper resource="mapper/CommentMapper.xml"/>
+		<mapper resource="mapper/FriendUrlMapper.xml"/>
+		<mapper resource="mapper/GustBookMapper.xml"/>
+		<mapper resource="mapper/ForbiddenMapper.xml"/>
+		<mapper resource="mapper/LogisticsMapper.xml"/>
+		<mapper resource="mapper/ClubMapper.xml"/>
+		<mapper resource="mapper/ClubImgMapper.xml"/>
+		<mapper resource="mapper/MgnFeedbackMapper.xml"/>
+		<mapper resource="mapper/NewsMapper.xml"/>
 	</mappers>
 </configuration>

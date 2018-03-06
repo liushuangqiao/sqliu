@@ -82,10 +82,21 @@
 	</update>
 
 	<select id="findArticleList" resultMap="ArticleManage">
-		select a.*,b.name as categoryName from articles a
-		LEFT JOIN category_name b on
-		a.category_id = b.category_id
-		WHERE a.status = #{status}
+		select a.*,b.name as
+		categoryName from articles a LEFT JOIN category_name b on
+		a.category_id = b.category_id WHERE a.status = #{status}
+	</select>
+
+	<select id="findByTitle" resultMap="ArticleManage">
+		select a.*,b.name as
+		categoryName from articles a LEFT JOIN category_name b on
+		a.category_id = b.category_id WHERE a.title LIKE CONCAT('%',#{title},'%')
+	</select>
+
+	<select id="findByWords" resultMap="ArticleManage">
+		select a.*,b.name as
+		categoryName from articles a LEFT JOIN category_name b on
+		a.category_id = b.category_id WHERE a.words LIKE CONCAT('%',#{words},'%')
 	</select>
 
 	<select id="find" resultMap="ArticleManage">

@@ -59,4 +59,7 @@
 		VALUES (#{username},#{password},#{phone},#{uuid},#{status})
 	</insert>
 
+	<select id="userList" resultMap="UserManage">
+		select * from sqliu_user
+	</select>
 </mapper>

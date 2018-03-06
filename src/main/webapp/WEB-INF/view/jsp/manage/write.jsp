@@ -14,19 +14,19 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+    <script src="http://ajax.microsoft.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
     <script type="text/javascript">
         function articleFormCommit() {
             if($(".categoryId").val()=='0'){
                 alert("还没有选择分类！")
-            }
-            if ($(".title").val()==''||$(".title").val()== null){
+            }else if ($(".title").val()==''||$(".title").val()== null){
                 alert("忘记写标题了！")
-            }
+            }else {
             var category = document.getElementById("select").value;
             var textwords =  $(".words").val().replace(/\n/ig,'</p><p>');
             $.ajax({
                 type : 'POST',
-                url : '${pageContext.request.contextPath}/manage/writeAdd',
+                url : '${getPageHost}/manage/writeAdd',
                 data : {
                     title : $(".title").val(),
                     words : textwords,
@@ -40,6 +40,7 @@
                      console.log("错了");
                 }
             })
+            }
         }
     </script>
     <style type="text/css">

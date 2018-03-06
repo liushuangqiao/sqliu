@@ -26,7 +26,7 @@
             var textwords =  $(".words").val().replace(/\n/ig,'</p><p>');
             $.ajax({
                 type : 'POST',
-                url : '${pageContext.request.contextPath}/manage/writeAdd',
+                url : '${getPageHost}/manage/writeAdd',
                 data : {
                     title : $(".title").val(),
                     words : textwords,

@@ -17,17 +17,12 @@
     <title>桥帮主|个人博客</title>
     <meta name="keywords" content="刘双桥,博客,技术博客"/>
     <meta name="description" content="刘双桥的个人博客。"/>
-    <link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/css/backtotop.css" rel="stylesheet">
+    <link href="${getPageHost}/css/base.css" rel="stylesheet">
+    <link href="${getPageHost}/css/index.css" rel="stylesheet">
+    <link href="${getPageHost}/css/backtotop.css" rel="stylesheet">
     <style type="text/css">
         .introduce{
             font-size:14px;
-        }
-        .intervalid{
-            margin-top: 70px;
-            margin-left: 30%;
-            font-size: 30px;
         }
     </style>
 </head>
@@ -38,18 +33,17 @@
 
     <div id="logo"><a href="/"></a></div>
     <nav class="topnav" id="topnav">
-        <a href="${pageContext.request.contextPath}/"><span>首页</span><span class="en">Home</span></a>
-        <a href="${pageContext.request.contextPath}/essay/1/1"><span>随笔</span><span class="en">Essay</span></a>
-        <a href="${pageContext.request.contextPath}/essay/2/1"><span>Java笔记</span><span class="en">Java</span></a>
-        <a href="${pageContext.request.contextPath}/essay/3/1"><span>慢生活</span><span class="en">Life</span></a>
-        <a href="${pageContext.request.contextPath}/essay/4/1"><span>读书心得</span><span class="en">Reading</span></a>
-        <a href="${pageContext.request.contextPath}/gustBook/list/1"><span>留言版</span><span class="en">Gustbook</span></a>
+        <a href="${getPageHost}/"><span>首页</span><span class="en">Home</span></a>
+        <a href="${getPageHost}/essay/1/1"><span>随笔</span><span class="en">Essay</span></a>
+        <a href="${getPageHost}/essay/2/1"><span>Java笔记</span><span class="en">Java</span></a>
+        <a href="${getPageHost}/essay/3/1"><span>慢生活</span><span class="en">Life</span></a>
+        <a href="${getPageHost}/essay/4/1"><span>读书心得</span><span class="en">Reading</span></a>
+        <a href="${getPageHost}/gustBook/list/1"><span>留言版</span><span class="en">Gustbook</span></a>
         <c:if test="${sessionScope.get('username')==null || sessionScope.get('username')==''}">
-            <a href="#"><span onclick="setUrlSession()">登录</span><span class="en">登录</span></a>
+        <a href="#"><span onclick="setUrlSession()">登录</span><span class="en">登录</span></a>
         </c:if>
         <c:if test="${sessionScope.get('username')!=null && sessionScope.get('username')!=''}">
-            <a><span>${sessionScope.get("username") }</span><span class="en">欢迎您</span></a>
-            <a href="#" onclick="userLogout()"><span>退出</span><span class="en">退出</span></a>
+            <a><span>${sessionScope.get("username") }</span><span class="en" onclick="userLogout()">退出</span></a>
         </c:if>
     </nav>
 </header>
@@ -73,24 +67,53 @@
     <h2 class="title_tj">
         <p>文章<span>推荐</span></p>
     </h2>
-    <div class="bloglist left" id="alist">
-
-        <%@include file="search.jsp"%>
+    <div class="bloglist left">
+        <c:forEach items="${pageInfo.list}" var="Article">
+            <h3 title="${Article.title }">${Article.title}</h3>
+            <figure>
+                <c:if test="${Article.categoryId=='1' }">
+                <img src="${getPageHost}/images/home/suibi.jpg">
+                </c:if>
+                <c:if test="${Article.categoryId=='2' }">
+                    <img src="${getPageHost}/images/home/java.png">
+                </c:if>
+                <c:if test="${Article.categoryId=='3' }">
+                    <img src="${getPageHost}/images/home/life.jpg">
+                </c:if>
+                <c:if test="${Article.categoryId=='4' }">
+                    <img src="${getPageHost}/images/home/reading.jpg">
+                </c:if>
+            </figure>
+            <ul>
+                <div style="width: 520px;max-height:60px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; word-break: break-all;">
+                    <p>${Article.words}</p>
+                </div>
+                <a title="${Article.title }" href="${getPageHost}/essayDetail/${Article.id }"
+                   target="_blank" class="readmore">阅读全文>></a>
+            </ul>
+            <p class="dateview">
+            <span>
+                <fmt:formatDate pattern="yyyy-MM-dd" value="${Article.createdTime }"></fmt:formatDate>
+                &nbsp; &nbsp; &nbsp;分类：<a  href="${getPageHost}/essay/${Article.categoryId}/1">【${Article.categoryName }】</a>
+            </span>
+            </p>
+        </c:forEach>
+            <div class="page"><%@include file="page.jsp"%></div>
     </div>
 
     <aside class="right">
-        <%-- <div class="weather">
-             <iframe width="250" scrolling="no" height="60" frameborder="0" allowtransparency="true"
-                     src="http://i.tianqi.com/index.php?c=code&id=12&icon=1&num=1"></iframe>
-         </div>--%>
+       <%-- <div class="weather">
+            <iframe width="250" scrolling="no" height="60" frameborder="0" allowtransparency="true"
+                    src="http://i.tianqi.com/index.php?c=code&id=12&icon=1&num=1"></iframe>
+        </div>--%>
         <div class="news">
             <h3>
                 <p>站内<span>搜索</span></p>
             </h3>
             <div class="" style="margin-bottom:20px;margin-top:13px;">
-                <form onsubmit="return false">
-                    <input id="searchText" name="searchInput" style="height: 35px;width: 246px;"  placeholder="请输入标题或者其他有关内容" type="text"/><br>
-                    <button style="margin-top:10px;height: 30px;width: 70px;background-color: #65B020;color: white;cursor:pointer" onclick="webSearch()" >站内搜索</button>
+                <form onsubmit="return false;" >
+                    <input id="searchText" style="height: 35px;width: 246px;"  placeholder="请输入标题或者其他有关内容" type="text"/><br>
+                    <button style="margin-top:10px;height: 30px;width: 70px;background-color: #65B020;color: white;cursor:pointer" onclick="webSearch()">站内搜索</button>
                     <button style="margin-left:137px;height: 30px;width: 40px;background-color: #65B020;color: white;cursor:pointer" type="reset">清空</button>
                 </form>
             </div>
@@ -99,10 +122,10 @@
             </h3>
             <ul class="rank"
                 style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; word-break: break-all;">
-                <c:forEach items="${pageInfo}" var="Article">
+               <%-- <c:forEach items="${pageInfo}" var="Article">
                     <li><a href="${getPageHost}/essayDetail/${Article.id }" target="_blank"
                            title="${Article.title}" target="_blank">${Article.title}</a></li>
-                </c:forEach>
+                </c:forEach>--%>
             </ul>
             <h3 class="ph">
                 <p>点击<span>排行</span></p>
@@ -155,22 +178,7 @@
     function hideContentWarning() {
         $("#contentWarning").css("display","none");
     }
-    var intervalid;
-    var i = 5;
-    function fun() {
-
-        if (i == 0) {
-            window.location.href = "${getPageHost}/";
-            clearInterval(intervalid);
-        }
-        var text = "搜索没有结果<br>将在<font color='red'>"+i+"</font>秒钟后跳转至<a color='green' href='${getPageHost}/'>首页</a>";
-
-        document.getElementById("seconds").innerHTML = text;
-        i--;
-    }
     function webSearch(){
-        var text = $("#searchText").val();
-        if(text != '' && text != null){
         $.ajax({
             type : 'POST',
             url : '${getPageHost}/search/1',
@@ -178,19 +186,11 @@
                 searchInput : $("#searchText").val(),
             },
             success : function(data) {
-                $('#alist').html(data);
-                if($("#alist").html().length==13){
-                    var div = '<div id="seconds"></div>';
-                    $("#alist").html(div);
-                    $("#seconds").addClass('intervalid');
-                    intervalid = setInterval("fun()", 1000);
-                }
             },
             error : function() {
                 console.log("错了");
             }
         })
-        }
     }
 </script>
 </body>
