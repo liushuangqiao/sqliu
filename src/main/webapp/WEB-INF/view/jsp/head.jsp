@@ -24,11 +24,10 @@
 <div id="logo"><a href="/"></a></div>
 <nav class="topnav" id="topnav">
     <a href="${pageContext.request.contextPath}/index"><span>首页</span><span class="en">Protal</span></a>
-    <a href="${pageContext.request.contextPath}/essay/1"><span>随笔</span><span class="en">About</span></a>
-    <a href="${pageContext.request.contextPath}/photo"><span>相册</span><span class="en">Life</span></a>
-    <a href="${pageContext.request.contextPath}/note/1"><span>Java笔记</span><span class="en">Doing</span></a>
-    <a href="${pageContext.request.contextPath}/life/1"><span>慢生活</span><span class="en">Share</span></a>
-    <a href="${pageContext.request.contextPath}/book/1"><span>书评</span><span class="en">Learn</span></a>
+    <a href="${pageContext.request.contextPath}/essay/1/1"><span>生活随笔</span><span class="en">Life</span></a>
+        <a href="${pageContext.request.contextPath}/essay/2/1"><span>编程笔记</span><span class="en">Coding</span></a>
+        <a href="${pageContext.request.contextPath}/essay/3/1"><span>旅行游记</span><span class="en">Traveling</span></a>
+        <a href="${pageContext.request.contextPath}/essay/4/1"><span>读书心得</span><span class="en">Reading</span></a>
     <a href="#"><span>留言版</span><span class="en">Gustbook</span></a>
 </nav>
 

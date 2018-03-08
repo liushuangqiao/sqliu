@@ -39,9 +39,9 @@
     <div id="logo"><a href="/"></a></div>
     <nav class="topnav" id="topnav">
         <a href="${pageContext.request.contextPath}/"><span>首页</span><span class="en">Home</span></a>
-        <a href="${pageContext.request.contextPath}/essay/1/1"><span>随笔</span><span class="en">Essay</span></a>
-        <a href="${pageContext.request.contextPath}/essay/2/1"><span>Java笔记</span><span class="en">Java</span></a>
-        <a href="${pageContext.request.contextPath}/essay/3/1"><span>慢生活</span><span class="en">Life</span></a>
+        <a href="${pageContext.request.contextPath}/essay/1/1"><span>生活随笔</span><span class="en">Life</span></a>
+        <a href="${pageContext.request.contextPath}/essay/2/1"><span>编程笔记</span><span class="en">Coding</span></a>
+        <a href="${pageContext.request.contextPath}/essay/3/1"><span>旅行游记</span><span class="en">Traveling</span></a>
         <a href="${pageContext.request.contextPath}/essay/4/1"><span>读书心得</span><span class="en">Reading</span></a>
         <a href="${pageContext.request.contextPath}/gustBook/list/1"><span>留言版</span><span class="en">Gustbook</span></a>
         <c:if test="${sessionScope.get('username')==null || sessionScope.get('username')==''}">
@@ -54,7 +54,7 @@
     </nav>
 </header>
 <%@include file="sqliu_js.jsp"%>
-<div class="banner" style="background: url('${getPageHost}images/banner/banner${randNum}.jpg')  top center; ">
+<div class="banner" style="background: url('${pageContext.request.contextPath}images/banner/banner${randNum}.jpg')  top center; ">
     <section class="box">
         <ul class="texts">
             <p>你现在的气质里，</p>
@@ -100,7 +100,7 @@
             <ul class="rank"
                 style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; word-break: break-all;">
                 <c:forEach items="${pageInfo}" var="Article">
-                    <li><a href="${getPageHost}/essayDetail/${Article.id }" target="_blank"
+                    <li><a href="${pageContext.request.contextPath}/essayDetail/${Article.id }" target="_blank"
                            title="${Article.title}" target="_blank">${Article.title}</a></li>
                 </c:forEach>
             </ul>
@@ -109,7 +109,7 @@
             </h3>
             <ul class="paih">
                 <c:forEach items="${articleRight}" var="hitsList">
-                    <li><a href="${getPageHost}/essayDetail/${hitsList.id }"
+                    <li><a href="${pageContext.request.contextPath}/essayDetail/${hitsList.id }"
                            title="${hitsList.title}" target="_blank">${hitsList.title}</a></li>
                 </c:forEach>
             </ul>
@@ -160,10 +160,10 @@
     function fun() {
 
         if (i == 0) {
-            window.location.href = "${getPageHost}/";
+            window.location.href = "${pageContext.request.contextPath}/";
             clearInterval(intervalid);
         }
-        var text = "搜索没有结果<br>将在<font color='red'>"+i+"</font>秒钟后跳转至<a color='green' href='${getPageHost}/'>首页</a>";
+        var text = "搜索没有结果<br>将在<font color='red'>"+i+"</font>秒钟后跳转至<a color='green' href='${pageContext.request.contextPath}/'>首页</a>";
 
         document.getElementById("seconds").innerHTML = text;
         i--;
@@ -173,7 +173,7 @@
         if(text != '' && text != null){
         $.ajax({
             type : 'POST',
-            url : '${getPageHost}/search/1',
+            url : '${pageContext.request.contextPath}/search/1',
             data : {
                 searchInput : $("#searchText").val(),
             },

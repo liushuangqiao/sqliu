@@ -18,11 +18,12 @@
     <title>桥帮主|个人博客</title>
     <meta name="keywords" content="个人博客模板,博客模板"/>
     <meta name="description" content="寻梦主题的个人博客模板，优雅、稳重、大气,低调。"/>
-    <script src="${getPageHost}/js/My97DatePicker/WdatePicker.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <script src="${pageContext.request.contextPath}/js/My97DatePicker/WdatePicker.js"></script>
     <script src="http://ajax.microsoft.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
-    <link href="${getPageHost}/css/base.css" rel="stylesheet">
-    <link href="${getPageHost}/css/new.css" rel="stylesheet">
-    <link href="${getPageHost}/css/backtotop.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/new.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/backtotop.css" rel="stylesheet">
    <script type="text/javascript">
         $(function(){
             //当滚动条的位置处于距顶部100像素以下时，跳转链接出现，否则消失
@@ -52,12 +53,12 @@
     <p id="back-to-top"><a href="#top"><span></span><img src="../images/top.gif"/></a></p>
     <div id="logo"><a href="/"></a></div>
     <nav class="topnav" id="topnav">
-        <a href="${getPageHost}/"><span>首页</span><span class="en">Home</span></a>
-        <a href="${getPageHost}/essay/1/1"><span>随笔</span><span class="en">Essay</span></a>
-        <a href="${getPageHost}/essay/2/1"><span>Java笔记</span><span class="en">Java</span></a>
-        <a href="${getPageHost}/essay/3/1"><span>慢生活</span><span class="en">Life</span></a>
-        <a href="${getPageHost}/essay/4/1"><span>读书心得</span><span class="en">Reading</span></a>
-        <a href="${getPageHost}/gustBook/list/1"><span>留言版</span><span class="en">Gustbook</span></a>
+        <a href="${pageContext.request.contextPath}/"><span>首页</span><span class="en">Home</span></a>
+        <a href="${pageContext.request.contextPath}/essay/1/1"><span>生活随笔</span><span class="en">Life</span></a>
+        <a href="${pageContext.request.contextPath}/essay/2/1"><span>编程笔记</span><span class="en">Coding</span></a>
+        <a href="${pageContext.request.contextPath}/essay/3/1"><span>旅行游记</span><span class="en">Traveling</span></a>
+        <a href="${pageContext.request.contextPath}/essay/4/1"><span>读书心得</span><span class="en">Reading</span></a>
+        <a href="${pageContext.request.contextPath}/gustBook/list/1"><span>留言版</span><span class="en">Gustbook</span></a>
         <c:if test="${sessionScope.get('username')==null || sessionScope.get('username')==''}">
         <a href="#"><span onclick="setUrlSession()">登录</span><span class="en">登录</span></a>
         </c:if>
@@ -70,7 +71,7 @@
 </header>
 <%@include file="sqliu_js.jsp"%>
 <article class="blogs">
-    <h1 class="t_nav"><span>您当前的位置：<a href="${getPageHost}/">首页</a>&nbsp;&gt;&nbsp;<a href="${getPageHost}/essay/${article.categoryId}/1">${article.categoryName}</a>&nbsp;&gt;&nbsp;${article.title}</span></h1>
+    <h1 class="t_nav"><span>您当前的位置：<a href="${pageContext.request.contextPath}/">首页</a>&nbsp;&gt;&nbsp;<a href="${pageContext.request.contextPath}/essay/${article.categoryId}/1">${article.categoryName}</a>&nbsp;&gt;&nbsp;${article.title}</span></h1>
     <div class="index_about">
             <h2 class="c_titile">${article.title}</h2><span id="essay_id" style="display: none">${article.id}</span>
             <p class="box_c">
@@ -89,10 +90,10 @@
     <div class="ad"></div>
     <div class="nextinfo">
             <c:if test="${lastTitle != null}">
-        <p>上一篇：<a href="${getPageHost}/essayDetail/${lastTitle.id}">${lastTitle.title}</a></p>
+        <p>上一篇：<a href="${pageContext.request.contextPath}/essayDetail/${lastTitle.id}">${lastTitle.title}</a></p>
             </c:if>
                 <c:if test="${nextTitle != null}">
-        <p>下一篇：<a href="${getPageHost}/essayDetail/${nextTitle.id}">${nextTitle.title}</a></p>
+        <p>下一篇：<a href="${pageContext.request.contextPath}/essayDetail/${nextTitle.id}">${nextTitle.title}</a></p>
                 </c:if>
     </div>
         <div style="margin-top:2%;" id="commenet_target">
@@ -120,7 +121,7 @@
                 <p style="font-size:15px;">发表评论
                     <span style="font-size:12px;">
                         <c:if test="${sessionScope.get('username')==''||sessionScope.get('username')==null }">
-                            您好，请先<a href="${getPageHost}/to_login">登录</a>
+                            您好，请先<a href="${pageContext.request.contextPath}/to_login">登录</a>
                         </c:if>
                     </span>
                 </p>
@@ -158,7 +159,7 @@
             </h3>
             <ul class="rank" style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; word-break: break-all;">
                 <c:forEach items="${newlist}" var="Article">
-                    <li><a href="${getPageHost}/essayDetail/${Article.id }" target="_blank" title="${Article.title}" target="_blank">${Article.title}</a></li>
+                    <li><a href="${pageContext.request.contextPath}/essayDetail/${Article.id }" target="_blank" title="${Article.title}" target="_blank">${Article.title}</a></li>
                 </c:forEach>
             </ul>
             <h3 class="ph">
@@ -166,7 +167,7 @@
             </h3>
             <ul class="paih">
                 <c:forEach items="${articleRight}" var="hitsList">
-                    <li><a href="${getPageHost}essayDetail/${hitsList.id }" title="${hitsList.title}" target="_blank">${hitsList.title}</a></li>
+                    <li><a href="${pageContext.request.contextPath}essayDetail/${hitsList.id }" title="${hitsList.title}" target="_blank">${hitsList.title}</a></li>
                 </c:forEach>
             </ul>
         </div>
@@ -189,7 +190,7 @@
         var praiseNum = $("#p_num_"+id).text();
         $.ajax({
             type : 'POST',
-            url : '${getPageHost}/comment/addPraise',
+            url : '${pageContext.request.contextPath}/comment/addPraise',
             data : {
                 id : id,
                 praise : praiseNum,
@@ -213,7 +214,7 @@
         var username = $("#userName").text();
         $.ajax({
             type : 'POST',
-            url : '${getPageHost}/comment/save',
+            url : '${pageContext.request.contextPath}/comment/save',
             data : {
                 essayId : essayId,
                 words : content,
@@ -227,7 +228,7 @@
                   $("#warningWords").html('评论内容为空！');
               }else if(data=='0'){
                   $("#warningWords").html('');
-                  $("#warningWords").html('请先<a href="${getPageHost}/to_login">登录</a>！');
+                  $("#warningWords").html('请先<a href="${pageContext.request.contextPath}/to_login">登录</a>！');
               }
             },
             error : function() {

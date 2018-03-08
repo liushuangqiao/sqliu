@@ -17,9 +17,9 @@
     <title>桥帮主|个人博客</title>
     <meta name="keywords" content="刘双桥,博客,技术博客"/>
     <meta name="description" content="刘双桥的个人博客。"/>
-    <link href="${getPageHost}/css/base.css" rel="stylesheet">
-    <link href="${getPageHost}/css/index.css" rel="stylesheet">
-    <link href="${getPageHost}/css/backtotop.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/backtotop.css" rel="stylesheet">
     <style type="text/css">
         .introduce{
             font-size:14px;
@@ -33,12 +33,12 @@
 
     <div id="logo"><a href="/"></a></div>
     <nav class="topnav" id="topnav">
-        <a href="${getPageHost}/"><span>首页</span><span class="en">Home</span></a>
-        <a href="${getPageHost}/essay/1/1"><span>随笔</span><span class="en">Essay</span></a>
-        <a href="${getPageHost}/essay/2/1"><span>Java笔记</span><span class="en">Java</span></a>
-        <a href="${getPageHost}/essay/3/1"><span>慢生活</span><span class="en">Life</span></a>
-        <a href="${getPageHost}/essay/4/1"><span>读书心得</span><span class="en">Reading</span></a>
-        <a href="${getPageHost}/gustBook/list/1"><span>留言版</span><span class="en">Gustbook</span></a>
+        <a href="${pageContext.request.contextPath}/"><span>首页</span><span class="en">Home</span></a>
+        <a href="${pageContext.request.contextPath}/essay/1/1"><span>随笔</span><span class="en">Essay</span></a>
+        <a href="${pageContext.request.contextPath}/essay/2/1"><span>Java笔记</span><span class="en">Java</span></a>
+        <a href="${pageContext.request.contextPath}/essay/3/1"><span>慢生活</span><span class="en">Life</span></a>
+        <a href="${pageContext.request.contextPath}/essay/4/1"><span>读书心得</span><span class="en">Reading</span></a>
+        <a href="${pageContext.request.contextPath}/gustBook/list/1"><span>留言版</span><span class="en">Gustbook</span></a>
         <c:if test="${sessionScope.get('username')==null || sessionScope.get('username')==''}">
         <a href="#"><span onclick="setUrlSession()">登录</span><span class="en">登录</span></a>
         </c:if>
@@ -48,7 +48,7 @@
     </nav>
 </header>
 <%@include file="sqliu_js.jsp"%>
-<div class="banner" style="background: url('${getPageHost}images/banner/banner${randNum}.jpg')  top center; ">
+<div class="banner" style="background: url('${pageContext.request.contextPath}images/banner/banner${randNum}.jpg')  top center; ">
     <section class="box">
         <ul class="texts">
             <p>你现在的气质里，</p>
@@ -72,29 +72,29 @@
             <h3 title="${Article.title }">${Article.title}</h3>
             <figure>
                 <c:if test="${Article.categoryId=='1' }">
-                <img src="${getPageHost}/images/home/suibi.jpg">
+                <img src="${pageContext.request.contextPath}/images/home/suibi.jpg">
                 </c:if>
                 <c:if test="${Article.categoryId=='2' }">
-                    <img src="${getPageHost}/images/home/java.png">
+                    <img src="${pageContext.request.contextPath}/images/home/java.png">
                 </c:if>
                 <c:if test="${Article.categoryId=='3' }">
-                    <img src="${getPageHost}/images/home/life.jpg">
+                    <img src="${pageContext.request.contextPath}/images/home/life.jpg">
                 </c:if>
                 <c:if test="${Article.categoryId=='4' }">
-                    <img src="${getPageHost}/images/home/reading.jpg">
+                    <img src="${pageContext.request.contextPath}/images/home/reading.jpg">
                 </c:if>
             </figure>
             <ul>
                 <div style="width: 520px;max-height:60px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; word-break: break-all;">
                     <p>${Article.words}</p>
                 </div>
-                <a title="${Article.title }" href="${getPageHost}/essayDetail/${Article.id }"
+                <a title="${Article.title }" href="${pageContext.request.contextPath}/essayDetail/${Article.id }"
                    target="_blank" class="readmore">阅读全文>></a>
             </ul>
             <p class="dateview">
             <span>
                 <fmt:formatDate pattern="yyyy-MM-dd" value="${Article.createdTime }"></fmt:formatDate>
-                &nbsp; &nbsp; &nbsp;分类：<a  href="${getPageHost}/essay/${Article.categoryId}/1">【${Article.categoryName }】</a>
+                &nbsp; &nbsp; &nbsp;分类：<a  href="${pageContext.request.contextPath}/essay/${Article.categoryId}/1">【${Article.categoryName }】</a>
             </span>
             </p>
         </c:forEach>
@@ -123,7 +123,7 @@
             <ul class="rank"
                 style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; word-break: break-all;">
                <%-- <c:forEach items="${pageInfo}" var="Article">
-                    <li><a href="${getPageHost}/essayDetail/${Article.id }" target="_blank"
+                    <li><a href="${pageContext.request.contextPath}/essayDetail/${Article.id }" target="_blank"
                            title="${Article.title}" target="_blank">${Article.title}</a></li>
                 </c:forEach>--%>
             </ul>
@@ -132,7 +132,7 @@
             </h3>
             <ul class="paih">
                 <c:forEach items="${articleRight}" var="hitsList">
-                    <li><a href="${getPageHost}/essayDetail/${hitsList.id }"
+                    <li><a href="${pageContext.request.contextPath}/essayDetail/${hitsList.id }"
                            title="${hitsList.title}" target="_blank">${hitsList.title}</a></li>
                 </c:forEach>
             </ul>
@@ -181,7 +181,7 @@
     function webSearch(){
         $.ajax({
             type : 'POST',
-            url : '${getPageHost}/search/1',
+            url : '${pageContext.request.contextPath}/search/1',
             data : {
                 searchInput : $("#searchText").val(),
             },
