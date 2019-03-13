@@ -1,4 +1,4 @@
-<%--
+﻿<%--
   Created by IntelliJ IDEA.
   User: shuangqiao
   Date: 2016/7/8
@@ -14,11 +14,16 @@
 <!doctype html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>桥帮主|个人博客</title>
-    <meta name="keywords" content="个人博客模板,博客模板" />
-    <meta name="description" content="桥帮主的个人博客。" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta charset="UTF-8">
+    <title>桥帮主&nbsp;|&nbsp;
+<c:if test="${categoryId=='1'}">生活随笔</c:if>
+<c:if test="${categoryId=='2'}">编程笔记</c:if>
+<c:if test="${categoryId=='3'}">旅行游记 </c:if>
+<c:if test="${categoryId=='4'}">读书心得</c:if>
+</title>
+    <meta name="keywords" content="个人博客,博客" />
+    <meta name="description" content="桥帮主，个人博客，生活随笔，编程笔记，旅行游记，读书心得。" />
+<link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon">
     <link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/new.css" rel="stylesheet">
@@ -35,7 +40,6 @@
             var myYear = time.getFullYear();
             var myMonth = time.getMonth() + 1;
             var myDay = time.getDate();
-            alert(myDay)
             if (myMonth < 10) {
                 myMonth = "0" + myMonth;
             }
@@ -85,7 +89,7 @@
     <div class="newblog left">
         <c:forEach items="${pageInfo.list}" var="list">
         <h2><a href="${pageContext.request.contextPath}/essayDetail/${list.id}">${list.title}</a></h2>
-        <p class="dateview"><span>发布时间：<fmt:formatDate pattern="yyyy-MM-dd" value="${list.createdTime }"></fmt:formatDate></span><span>分类：<a href="${pageContext.request.contextPath}/essay/${list.categoryId }/1">【${list.categoryName }】</a></span><span>浏览量：(${list.hits})</span></p>
+        <p class="dateview"><span>发布时间：<fmt:formatDate pattern="yyyy-MM-dd HH:MM:ss" value="${list.createdTime }"></fmt:formatDate></span><span>分类：<a href="/essay/${list.categoryId }/1">【${list.categoryName }】</a></span><span>浏览量：(${list.hits})</span></p>
         <figure><img src="${pageContext.request.contextPath}/images/001.png"></figure>
         <ul class="nlist">
             <div style="width: 520px;max-height:61px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; word-break: break-all;">
@@ -106,8 +110,8 @@
     <aside class="right">
        <%-- <div class="rnav">
             <ul>
-                <li class="rnav1"><a href="/download/" target="_blank">日记</a></li>
-                <li class="rnav2"><a href="/newsfree/" target="_blank">程序人生</a></li>
+                <li class="rnav1"><a href="${pageContext.request.contextPath}/download/" target="_blank">日记</a></li>
+                <li class="rnav2"><a href="${pageContext.request.contextPath}/newsfree/" target="_blank">程序人生</a></li>
                 <li class="rnav3"><a href="/web/" target="_blank">欣赏</a></li>
                 <li class="rnav4"><a href="/newshtml5/" target="_blank">短信祝福</a></li>
             </ul>
@@ -141,7 +145,7 @@
     </aside>
 </article>
 <footer>
-    <p>版权所有 ©&nbsp;桥帮主工作室&nbsp;&nbsp; <a href="http://www.miitbeian.gov.cn/" target="_blank">鄂ICP备15020852号-1</a> <a href="/">网站统计</a></p>
+    <p>Copyright © 2015-2018 &nbsp;桥帮主工作室&nbsp; All rights reserved. <a href="http://www.miitbeian.gov.cn/" target="_blank">鄂ICP备15020852号-1</a> </p>
 </footer>
 </body>
 </html>

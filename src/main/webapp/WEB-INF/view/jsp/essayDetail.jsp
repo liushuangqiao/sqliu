@@ -1,4 +1,4 @@
-<%--
+﻿<%--
   Created by IntelliJ IDEA.
   User: shuangqiao
   Date: 2016/7/8
@@ -14,13 +14,15 @@
 <!doctype html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>桥帮主|个人博客</title>
-    <meta name="keywords" content="个人博客模板,博客模板"/>
-    <meta name="description" content="寻梦主题的个人博客模板，优雅、稳重、大气,低调。"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<%--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">--%>
+
+<meta charset="UTF-8">
+    <title>${article.title}&nbsp;|&nbsp;桥帮主博客</title>
+    <meta name="keywords" content="个人博客,博客"/>
+    <meta name="description" content="桥帮主，个人博客，生活随笔，编程笔记，旅行游记，读书心得。${article.title}"/>
     <script src="${pageContext.request.contextPath}/js/My97DatePicker/WdatePicker.js"></script>
     <script src="http://ajax.microsoft.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
+<link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon">
     <link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/new.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/backtotop.css" rel="stylesheet">
@@ -76,7 +78,7 @@
             <h2 class="c_titile">${article.title}</h2><span id="essay_id" style="display: none">${article.id}</span>
             <p class="box_c">
             <span class="d_time">
-                发布时间：<fmt:formatDate pattern="yyyy-MM-dd" value="${article.createdTime }"></fmt:formatDate>
+                发布时间：<fmt:formatDate pattern="yyyy-MM-dd HH:MM:ss" value="${article.createdTime }"></fmt:formatDate>
         </span>
                 <span>浏览量：(${article.hits})</span>
                 <ul class="infos">
@@ -85,7 +87,7 @@
             </p>
             </ul>
           <%--  <div class="keybq">
-                <p><span>关键字词</span>：爱情,犯错,原谅,分手</p>
+                <p><span>关键字词</span>：</p>
             </div>--%>
     <div class="ad"></div>
     <div class="nextinfo">
@@ -110,7 +112,7 @@
                     <tr>
                         <td width="83%" style="text-align: right">${clist.userName}&nbsp;</td>
                         <td><span><a href="#" onclick="addPraise(${clist.id})">赞</a>（<span id="p_num_${clist.id}">${clist.praise}</span>）&nbsp;</span>
-                            <span align="right"><fmt:formatDate pattern="yyyy-MM-dd" value="${clist.createdTime }"></fmt:formatDate></span></td>
+                            <span align="right"><fmt:formatDate pattern="yyyy-MM-dd hh:MM:ss" value="${clist.createdTime }"></fmt:formatDate></span></td>
                     </tr>
                         <h2 style="border-bottom: #B2BBBB 1px solid;margin-right: 20px;"/>
                     </c:forEach>
@@ -121,7 +123,7 @@
                 <p style="font-size:15px;">发表评论
                     <span style="font-size:12px;">
                         <c:if test="${sessionScope.get('username')==''||sessionScope.get('username')==null }">
-                            您好，请先<a href="${pageContext.request.contextPath}/to_login">登录</a>
+                            您好，请先<a href="${getPageHost}/to_login">登录</a>
                         </c:if>
                     </span>
                 </p>
@@ -141,8 +143,9 @@
 </div>
 
         </div>
-    <aside class="right">
-        <!-- Baidu Button BEGIN -->
+ 
+    <!--<aside class="right">
+        
         <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><a
                 class="bds_qzone"></a><a class="bds_tqq"></a><a class="bds_renren"></a><span class="bds_more"></span><a
                 class="shareCount"></a></div>
@@ -151,7 +154,7 @@
         <script type="text/javascript">
             document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date() / 3600000)
         </script>
-        <!-- Baidu Button END -->
+        Baidu Button END 
         <div class="blank"></div>
         <div class="news">
             <h3>
@@ -167,7 +170,7 @@
             </h3>
             <ul class="paih">
                 <c:forEach items="${articleRight}" var="hitsList">
-                    <li><a href="${pageContext.request.contextPath}essayDetail/${hitsList.id }" title="${hitsList.title}" target="_blank">${hitsList.title}</a></li>
+                    <li><a href="${pageContext.request.contextPath}/essayDetail/${hitsList.id }" title="${hitsList.title}" target="_blank">${hitsList.title}</a></li>
                 </c:forEach>
             </ul>
         </div>
@@ -178,11 +181,12 @@
             <ul>
             </ul>
         </div>
-    </aside>
+
+    </aside>-->
 </article>
 
 <footer>
-    <p>版权所有 ©&nbsp;桥帮主工作室&nbsp;&nbsp; <a href="http://www.miitbeian.gov.cn/" target="_blank">鄂ICP备15020852号-1</a> <a href="/">网站统计</a></p>
+ <p>Copyright © 2015-2018 &nbsp;桥帮主工作室&nbsp; All rights reserved. <a href="http://www.miitbeian.gov.cn/" target="_blank">鄂ICP备15020852号-1</a> </p>
 </footer>
 </body>
 <script type="text/javascript">
@@ -222,7 +226,7 @@
             },
             success : function(data) {
               if(data=='1'){
-                  window.location.href = "/essayDetail/"+${article.id};
+                  window.location.href = "${pageContext.request.contextPath}/essayDetail/"+${article.id};
               }else if(data=='2'){
                   $("#warningWords").html('');
                   $("#warningWords").html('评论内容为空！');

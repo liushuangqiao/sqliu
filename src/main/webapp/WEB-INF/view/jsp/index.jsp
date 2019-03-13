@@ -1,4 +1,4 @@
-<%--
+﻿<%--
   Created by IntelliJ IDEA.
   User: shuangqiao
   Date: 2016/7/8
@@ -14,9 +14,10 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>桥帮主|个人博客</title>
+    <title>桥帮主&nbsp;|&nbsp;个人博客</title>
     <meta name="keywords" content="刘双桥,博客,技术博客"/>
     <meta name="description" content="刘双桥的个人博客。"/>
+<link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon">
     <link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/backtotop.css" rel="stylesheet">
@@ -30,13 +31,14 @@
             font-size: 30px;
         }
     </style>
+<meta name="baidu_union_verify" content="183970d8564cd7a6e767cdb68aba1aac">
 </head>
 <%--<%@include file="user/login_style.jsp"%>--%>
 <body>
 <header>
     <p id="back-to-top"><a href="#top"><span></span><img src="../images/top.gif"/></a></p>
 
-    <div id="logo"><a href="/"></a></div>
+    <div id="logo"><a href="${pageContext.request.contextPath}/"></a></div>
     <nav class="topnav" id="topnav">
         <a href="${pageContext.request.contextPath}/"><span>首页</span><span class="en">Home</span></a>
         <a href="${pageContext.request.contextPath}/essay/1/1"><span>生活随笔</span><span class="en">Life</span></a>
@@ -54,7 +56,7 @@
     </nav>
 </header>
 <%@include file="sqliu_js.jsp"%>
-<div class="banner" style="background: url('${pageContext.request.contextPath}images/banner/banner${randNum}.jpg')  top center; ">
+<div class="banner" style="background: url('${pageContext.request.contextPath}/images/banner/banner${randNum}.jpg')  top center; ">
     <section class="box">
         <ul class="texts">
             <p>你现在的气质里，</p>
@@ -91,7 +93,7 @@
                 <form onsubmit="return false">
                     <input id="searchText" name="searchInput" style="height: 35px;width: 246px;"  placeholder="请输入标题或者其他有关内容" type="text"/><br>
                     <button style="margin-top:10px;height: 30px;width: 70px;background-color: #65B020;color: white;cursor:pointer" onclick="webSearch()" >站内搜索</button>
-                    <button style="margin-left:137px;height: 30px;width: 40px;background-color: #65B020;color: white;cursor:pointer" type="reset">清空</button>
+                    <button style="margin-left:120px;height: 30px;width: 40px;background-color: #65B020;color: white;cursor:pointer" type="reset">清空</button>
                 </form>
             </div>
             <h3>
@@ -100,7 +102,7 @@
             <ul class="rank"
                 style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; word-break: break-all;">
                 <c:forEach items="${pageInfo}" var="Article">
-                    <li><a href="${pageContext.request.contextPath}/essayDetail/${Article.id }" target="_blank"
+                    <li><a href="/essayDetail/${Article.id }" target="_blank"
                            title="${Article.title}" target="_blank">${Article.title}</a></li>
                 </c:forEach>
             </ul>
@@ -117,13 +119,17 @@
                 <p>博主<span>简介</span></p>
             </h3>
             <ul class="rank">
+		<span class="introduce"><b>姓名：</b></span>不详</br>
+		<span class="introduce"><b>字：</b></span>乔木</br>
                 <span class="introduce"><b>网名：</b></span>Sqliu | 桥帮主</br>
-                <span class="introduce"><b>职业：</b></span>java程序员</br>
-                <span class="introduce"><b>爱好：</b></span>阅读，编程，LOL，烹饪</br>
-                <span class="introduce"><b>籍贯：</b></span>湖北孝感</br>
-                <span class="introduce"><b>工作地点：</b></span>深圳</br>
+                <span class="introduce"><b>职业：</b></span>高级软件工程师</br>
+                <span class="introduce"><b>爱好：</b></span>阅读，编程，LOL，烹饪，户外运动</br>
+                <span class="introduce"><b>原产地：</b></span>鄂东北</br>
+                <span class="introduce"><b>工作地点：</b></span>鹏城</br>
+		<span class="introduce"><b>人生理想：</b></span>把当天的bug改完</br>
                 <span class="introduce"><b>喜欢的书：</b></span>《白鹿原》《平凡的世界》</br>
-                <span class="introduce"><b>喜欢的歌手：</b></span>张学友，伍佰，霉霉，Beyond
+                <span class="introduce"><b>喜欢的歌手：</b></span>张学友，伍佰，霉霉，Beyond</br>
+		<span class="introduce"><b>喜欢的人：</b></span>露梅，明珠夫人，焰灵姬
             </ul>
             <h3 class="links">
                 <p>友情<span>链接</span></p>
@@ -144,12 +150,16 @@
             document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date() / 3600000)
         </script>
         <!-- Baidu Button END -->
-        <div class="guanzhu">扫描二维码，加<span style="color: #65B020;">桥帮主</span>微信号，交个朋友</div>
-        <span href="#" class="weixin"> </span></aside>
+        <div class="guanzhu">扫描二维码，加<span style="color: #65B020;">桥帮主的江湖</span>微信公众号，交个朋友</div>
+        <!--<span href="#" class="weixin"> </span>-->
+<img src="../images/weixinlogo.jpg" style="
+    width: 108%;
+    height: 100%;
+">
+</aside>
 </article>
 <footer>
-    <p>版权所有 ©&nbsp;桥帮主工作室&nbsp;&nbsp; <a href="http://www.miitbeian.gov.cn/" target="_blank">鄂ICP备15020852号-1</a> <a
-            href="/">网站统计</a></p>
+    <p>Copyright © 2015-2018 &nbsp;桥帮主工作室&nbsp; All rights reserved. <a href="http://www.miitbeian.gov.cn/" target="_blank">鄂ICP备15020852号-1</a> </p>
 </footer>
 <script type="text/javascript">
     function hideContentWarning() {
@@ -163,7 +173,7 @@
             window.location.href = "${pageContext.request.contextPath}/";
             clearInterval(intervalid);
         }
-        var text = "搜索没有结果<br>将在<font color='red'>"+i+"</font>秒钟后跳转至<a color='green' href='${pageContext.request.contextPath}/'>首页</a>";
+        var text = "搜索没有结果<br>将在<font color='red'>"+i+"</font>秒钟后跳转至<a color='green' href='${getPageHost}/'>首页</a>";
 
         document.getElementById("seconds").innerHTML = text;
         i--;
